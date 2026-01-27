@@ -1,0 +1,3 @@
+restfullapi are just set of rules that follows get post put delete 
+clentsiderendering-json
+serversiderendering-html
