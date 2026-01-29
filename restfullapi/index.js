@@ -9,7 +9,7 @@ mongoose.connect("mongodb://localhost:27017/mydatabase")
     .catch(err => console.error("Could not connect to MongoDB", err));
 
 
-// schema
+
 const userSchema = new mongoose.Schema({
     first_name: {type: String, required: true},
     last_name: {type: String, required: false},
