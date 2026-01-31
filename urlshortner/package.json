@@ -10,6 +10,7 @@
   "description": "",
   "dependencies": {
     "express": "^5.2.1",
-    "mongoose": "^9.1.5"
+    "mongoose": "^9.1.5",
+    "nanoid": "^5.1.6"
   }
 }
