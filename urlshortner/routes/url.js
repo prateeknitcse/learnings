@@ -3,3 +3,5 @@ const express = require('express');
  const { generateShortUrl } = require('../controllers/url');
 
  router.post('/', generateShortUrl);
+
+module.exports = router;
