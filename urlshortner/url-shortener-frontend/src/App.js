@@ -14,7 +14,7 @@ function App() {
     setShortUrl("");
 
     try {
-      const res = await fetch("http://localhost:3002/url", {
+      const res = await fetch(process.env.REACT_APP_BACKEND_URL + "/url", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url }),
@@ -27,7 +27,7 @@ function App() {
         return;
       }
 
-      setShortUrl(`http://localhost:3002/${data.id}`);
+      setShortUrl(`${process.env.REACT_APP_BACKEND_URL}/${data.id}`);
       setUrl("");
     } catch {
       setError("Backend server not running");

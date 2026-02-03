@@ -16,7 +16,7 @@ function Analytics() {
 
     try {
       const res = await fetch(
-        `http://localhost:3002/url/analytics/${shortId}`
+        `${process.env.REACT_APP_BACKEND_URL}url/analytics/${shortId}`
       );
       const result = await res.json();
 
