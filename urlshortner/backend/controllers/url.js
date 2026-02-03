@@ -8,9 +8,7 @@ async function generateShortUrl(req, res) {
     if (!url) {
       return res.status(400).json({ error: "URL is required" });
     }
-
-    // optional validation
-    if (!/^https?:\/\//i.test(url)) {
+    if (!/^https?:\/\//i.test(url)){
       return res.status(400).json({ error: "Invalid URL format" });
     }
 
