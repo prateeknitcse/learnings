@@ -1,30 +1,25 @@
 import { useState } from "react";
-
 function Analytics() {
   const [shortId, setShortId] = useState("");
+  const [password, setPassword] = useState("");
   const [data, setData] = useState(null);
   const [error, setError] = useState("");
-
   const fetchAnalytics = async () => {
     setError("");
     setData(null);
-
-    if (!shortId) {
-      setError("Enter Short ID");
+    if (!shortId || !password) {
+      setError("Short ID and password required");
       return;
     }
-
     try {
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/url/analytics/${shortId}`
+        `${process.env.REACT_APP_BACKEND_URL}/url/analytics/${shortId}?password=${password}`
       );
       const result = await res.json();
-
       if (!res.ok) {
         setError(result.error);
         return;
       }
-
       setData(result);
     } catch {
       setError("Backend not reachable");
@@ -33,7 +28,7 @@ function Analytics() {
 
   return (
     <div>
-      <h2>🌍 Analytics Dashboard</h2>
+      <h2>🔐 Analytics Dashboard</h2>
 
       <input
         type="text"
@@ -42,7 +37,14 @@ function Analytics() {
         onChange={(e) => setShortId(e.target.value)}
       />
 
-      <button onClick={fetchAnalytics}>Get Analytics</button>
+      <input
+        type="password"
+        placeholder="Analytics Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+
+      <button onClick={fetchAnalytics}>View Analytics</button>
 
       {error && <p className="error">{error}</p>}
 
@@ -53,7 +55,7 @@ function Analytics() {
           <p><b>Total Clicks:</b> {data.totalClicks}</p>
 
           <h3>Visitor Details</h3>
-          <table style={{ width: "100%", fontSize: "14px" }}>
+          <table>
             <thead>
               <tr>
                 <th>Time</th>

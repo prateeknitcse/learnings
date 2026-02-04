@@ -8,6 +8,10 @@ router.post('/', generateShortUrl);
 router.get('/analytics/:shortId', async (req, res) => {
   try {
     const { shortId } = req.params;
+    const { password } = req.query;
+    if (password !== process.env.ANALYTICS_PASSWORD){
+      return res.status(401).json({ error:"Invalid password"});
+    }
 
     const url = await Url.findOne({ shortId });
 
